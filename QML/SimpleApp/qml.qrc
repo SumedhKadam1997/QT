@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>setinfo.qml</file>
+        <file>getinfo.qml</file>
+    </qresource>
+</RCC>
