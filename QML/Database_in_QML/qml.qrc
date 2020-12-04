@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>add.qml</file>
+        <file>view.qml</file>
+        <file>curr_data.qml</file>
+    </qresource>
+</RCC>
