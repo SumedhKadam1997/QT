@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>mode_one.qml</file>
+        <file>list_rectangle.qml</file>
+        <file>graph_rectangle.qml</file>
+        <file>start_page.qml</file>
+        <file>settings.qml</file>
+        <file>input_values.qml</file>
     </qresource>
 </RCC>

@@ -16,11 +16,10 @@ class mainproperties: public QObject
     Q_PROPERTY(qint64 ava READ ava WRITE setAva NOTIFY avaChanged)
     Q_PROPERTY(qint64 perf READ perf WRITE setPerf NOTIFY perfChanged)
     Q_PROPERTY(qint64 qua READ qua WRITE setQua NOTIFY quaChanged)
-    Q_PROPERTY(qint64 satish READ satish WRITE setSatish NOTIFY satishChanged)
 
 public:
 
-    mainproperties();
+    mainproperties();    
     qint64 production_count() const;
     qint64 rejection_count() const;
     qint64 stop_time() const;
@@ -30,28 +29,21 @@ public:
     qint64 ava() const;
     qint64 perf() const;
     qint64 qua() const;
-    qint64 satish() const;
+
 public slots:
+
     void setProduction_count(qint64 production_count);
     void setrejection_count(qint64 rejection_count);
-
     void setStop_time(qint64 stop_time);
-
     void setBreakdown_time(qint64 breakdown_time);
-
     void setRun_time(qint64 run_time);
-
     void setOee(qint64 oee);
-
     void setAva(qint64 ava);
-
     void setPerf(qint64 perf);
-
     void setQua(qint64 qua);
 
-    void setSatish(qint64 satish);
-
 signals:
+
     void production_countChanged(qint64 production_count);
     void rejection_countChanged(qint64 rejection_count);
     void stop_timeChanged(qint64 stop_time);
@@ -62,9 +54,8 @@ signals:
     void perfChanged(qint64 perf);
     void quaChanged(qint64 qua);
 
-    void satishChanged(qint64 satish);
-
 public:
+
     qint64 m_production_count;
     qint64 m_rejection_count;
     qint64 m_stop_time;
@@ -74,7 +65,6 @@ public:
     qint64 m_ava;
     qint64 m_perf;
     qint64 m_qua;
-    qint64 m_satish;
 
 };
 

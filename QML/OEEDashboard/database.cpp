@@ -46,8 +46,6 @@ void database::setprodprop(mainproperties *obj)
         int fieldNo = query.record().indexOf("production_count");
         while (query.next()) {
             int production_count = query.value(fieldNo).toInt();
-
-
             obj->setProduction_count(production_count);
             qDebug() << "Sumedh " << obj->m_production_count << "Sahil " << production_count;
         }
@@ -72,24 +70,6 @@ void database::setrejprop(mainproperties *obj)
     }
 }
 
-//void database::setprodprop()
-//{
-//    QSqlQuery query;
-//    if(!query.exec("SELECT production_count FROM OeeData ORDER BY ID DESC LIMIT 1")){
-//        qDebug() << "Database: error in accessing production count";
-//        qDebug() << query.lastError().text();
-//    } else {
-//        int fieldNo = query.record().indexOf("production_count");
-//        while (query.next()) {
-//            int production_count = query.value(fieldNo).toInt();
-
-//            mainproperties prop;
-//            query.first();
-//            prop.setProduction_count(production_count);
-//            qDebug() << "Sumedh " << prop.m_production_count << "Sahil " << production_count;
-//        }
-//    }
-//}
 
 bool database::opendb()
 {
@@ -125,7 +105,7 @@ void database::closedb()
 bool database::createtable()
 {
     QSqlQuery query;
-    if(!query.exec("CREATE TABLE main (id INTEGER PRIMARY KEY AUTOINCREMENT, production_count INTEGER, rejection_count INTEGER, stop_time INTEGER, breakdown_time INTEGER, run_time INTEGER, oee INTEGER, ava INTEGER, perf INTEGER, qua INTEGER)")){
+    if(!query.exec("CREATE TABLE OeeData (id INTEGER PRIMARY KEY AUTOINCREMENT, production_count INTEGER, rejection_count INTEGER, stop_time INTEGER, breakdown_time INTEGER, run_time INTEGER, oee INTEGER, ava INTEGER, perf INTEGER, qua INTEGER)")){
         qDebug() << "Database: error in creating table ";
         qDebug() << query.lastError().text();
         return false;

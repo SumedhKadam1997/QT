@@ -10,7 +10,7 @@
 #define DATABASE_HOSTNAME   "localhost"
 #define DATABASE_NAME       "oee_database.db"
 #define TABLE               "OeeData"
-#define DBFILE              "C:\\Users\\uxoriousghost\\Desktop\\QML\\OEEDashboard\\"
+#define DBFILE              "C:\\Users\\uxoriousghost\\Desktop\\QT-QML\\QML\\OEEDashboard\\"
 
 
 class database : public QObject

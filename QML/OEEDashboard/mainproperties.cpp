@@ -137,17 +137,3 @@ void mainproperties::setQua(qint64 qua)
     m_qua = qua;
     emit quaChanged(m_qua);
 }
-
-void mainproperties::setSatish(qint64 satish)
-{
-    if (m_satish == satish)
-        return;
-
-    m_satish = satish;
-    emit satishChanged(m_satish);
-}
-
-qint64 mainproperties::satish() const
-{
-    return m_satish;
-}

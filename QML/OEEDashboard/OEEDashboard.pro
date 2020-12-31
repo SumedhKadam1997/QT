@@ -8,8 +8,10 @@ CONFIG += c++11
 
 SOURCES += \
         database.cpp \
+        grid_rect_properties.cpp \
         main.cpp \
-        mainproperties.cpp
+        mainproperties.cpp \
+        qml_screen_properties.cpp
 
 RESOURCES += qml.qrc
 
@@ -26,7 +28,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     database.h \
-    mainproperties.h
+    grid_rect_properties.h \
+    mainproperties.h \
+    qml_screen_properties.h
 
 DISTFILES += \
     ContactModel.qml

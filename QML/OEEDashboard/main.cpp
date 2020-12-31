@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QQmlContext>
+#include <qml_screen_properties.h>
+#include <grid_rect_properties.h>
 
 int main(int argc, char *argv[])
 {
@@ -18,18 +20,30 @@ int main(int argc, char *argv[])
     db.dbconnect();
 
     mainproperties *prop = new mainproperties();
+    qml_properties *qml_prop = new qml_properties();
+    grid_rect_properties *grid_prop = new grid_rect_properties();
 
+    grid_prop->setOee(1);
+    grid_prop->setPerf(1);
+    grid_prop->setAva(1);
+    grid_prop->setQua(1);
+    grid_prop->setTotal_count(1);
+    grid_prop->setReject_count(1);
+    grid_prop->setShift(1);
+    grid_prop->setStop_time(1);
+    grid_prop->setBreakdown_time(1);
+    grid_prop->setRuntime(1);
+    grid_prop->setActual_cycle(1);
+    grid_prop->setIdeal_cycle(1);
 
     QQmlApplicationEngine engine;
-//    QQmlContext *context = new QQmlContext(engine.rootContext());
-//    context->setContextProperty("myProp", prop);
-
 
     engine.rootContext()->setContextProperty("myProp", prop);
+    engine.rootContext()->setContextProperty("myQmlProp", qml_prop);
+    engine.rootContext()->setContextProperty("myGridProp", grid_prop);
 
     db.setprodprop(prop);
     db.setrejprop(prop);
-
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
