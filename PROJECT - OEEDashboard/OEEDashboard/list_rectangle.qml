@@ -56,7 +56,7 @@ Rectangle {
             Text {
                 id: oee_perc_text_
                 width: 254
-                text: qsTr("80 %")
+                text: myProp.oee
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -107,7 +107,7 @@ Rectangle {
             Text {
                 id: perf_perc_text_
                 width: 254
-                text: qsTr("80 %")
+                text: myProp.perf
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -158,7 +158,7 @@ Rectangle {
             Text {
                 id: ava_perc_text_
                 width: 254
-                text: qsTr("80 %")
+                text: myProp.ava
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -209,7 +209,7 @@ Rectangle {
             Text {
                 id: qua_perc_text_
                 width: 254
-                text: qsTr("80 %")
+                text: myProp.qua
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -363,7 +363,7 @@ Rectangle {
             Text {
                 id: shift_num_text
                 width: 254
-                text: qsTr("1st")
+                text: myProp.shift
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -414,7 +414,7 @@ Rectangle {
             Text {
                 id: stop_time_num_text
                 width: 254
-                text: qsTr("1 hr")
+                text: myProp.stop_time + "hr"
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -465,7 +465,7 @@ Rectangle {
             Text {
                 id: breakdown_num_text
                 width: 254
-                text: qsTr("2 hrs")
+                text: myProp.breakdown_time + " hr"
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -516,7 +516,7 @@ Rectangle {
             Text {
                 id: run_time_num_text
                 width: 254
-                text: qsTr("6 hrs")
+                text: myProp.run_time + " hr"
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -567,7 +567,7 @@ Rectangle {
             Text {
                 id: ideal_cycle_time_num_text
                 width: 254
-                text: qsTr("45 min")
+                text: myProp.ideal_time + " mins"
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
@@ -618,7 +618,7 @@ Rectangle {
             Text {
                 id: actual_cycle_time_num_text
                 width: 254
-                text: qsTr("55 min")
+                text: myProp.actual_time + " mins"
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom

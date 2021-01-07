@@ -42,8 +42,18 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("myQmlProp", qml_prop);
     engine.rootContext()->setContextProperty("myGridProp", grid_prop);
 
+    db.setoeeprop(prop);
+    db.setperfprop(prop);
+    db.setavaprop(prop);
+    db.setquaprop(prop);
     db.setprodprop(prop);
     db.setrejprop(prop);
+    db.setshiftprop(prop);
+    db.setstopprop(prop);
+    db.setbreakprop(prop);
+    db.setrunprop(prop);
+    db.setidealprop(prop);
+    db.setactualprop(prop);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

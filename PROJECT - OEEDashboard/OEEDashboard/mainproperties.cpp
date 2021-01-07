@@ -57,6 +57,21 @@ qint64 mainproperties::qua() const
     return m_qua;
 }
 
+qint64 mainproperties::actual_time() const
+{
+    return m_actual_time;
+}
+
+qint64 mainproperties::ideal_time() const
+{
+    return m_ideal_time;
+}
+
+qint64 mainproperties::shift() const
+{
+    return m_shift;
+}
+
 void mainproperties::setProduction_count(qint64 production_count)
 {
     if (m_production_count == production_count)
@@ -137,3 +152,32 @@ void mainproperties::setQua(qint64 qua)
     m_qua = qua;
     emit quaChanged(m_qua);
 }
+
+void mainproperties::setShift(qint64 shift)
+{
+    if (m_shift == shift)
+        return;
+
+    m_shift = shift;
+    emit shiftChanged(m_shift);
+}
+
+void mainproperties::setActual_time(qint64 actual_time)
+{
+    if (m_actual_time == actual_time)
+        return;
+
+    m_actual_time = actual_time;
+    emit actual_timeChanged(m_actual_time);
+}
+
+void mainproperties::setIdeal_time(qint64 ideal_time)
+{
+    if (m_ideal_time == ideal_time)
+        return;
+
+    m_ideal_time = ideal_time;
+    emit ideal_timeChanged(m_ideal_time);
+}
+
+

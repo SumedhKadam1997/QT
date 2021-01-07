@@ -13,8 +13,8 @@ import Database 1.0
 Rectangle {
     id: settings_main_rect
     color: "black"
-    width: Screen.width
-    height: Screen.height - myQmlProp.titlebar_height
+    width: myQmlProp.body_width
+    height: myQmlProp.body_height
 
 
 
@@ -31,10 +31,8 @@ Rectangle {
 
     Rectangle {
         id: header_rect
-        width: 500
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.rightMargin: 0
+        width: myQmlProp.body_width * 0.3
+        height: myQmlProp.body_height
         anchors.left: parent.left
         anchors.right: description_rect.left
         //        color: "black"
@@ -75,10 +73,9 @@ Rectangle {
     Rectangle {
         id: description_rect
         color: "#2d2f39"
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        width: myQmlProp.body_width * 0.7
+        height: myQmlProp.body_height
         anchors.leftMargin: 5
-        anchors.right: parent.right
         anchors.left: header_rect.right
 
         Dialog {
@@ -498,6 +495,6 @@ Rectangle {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.125}
+    D{i:0;formeditorZoom:0.75}
 }
 ##^##*/

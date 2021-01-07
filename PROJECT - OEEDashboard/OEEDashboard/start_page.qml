@@ -14,6 +14,8 @@ Rectangle {
     id: start_page_rect
     width: myQmlProp.body_width
     height: myQmlProp.body_height
+    color: "black"
+
 
     Rectangle {
         id: list_rectangle

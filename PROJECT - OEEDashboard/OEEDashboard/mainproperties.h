@@ -16,6 +16,12 @@ class mainproperties: public QObject
     Q_PROPERTY(qint64 ava READ ava WRITE setAva NOTIFY avaChanged)
     Q_PROPERTY(qint64 perf READ perf WRITE setPerf NOTIFY perfChanged)
     Q_PROPERTY(qint64 qua READ qua WRITE setQua NOTIFY quaChanged)
+    Q_PROPERTY(qint64 shift READ shift WRITE setShift NOTIFY shiftChanged)
+    Q_PROPERTY(qint64 ideal_time READ ideal_time WRITE setIdeal_time NOTIFY ideal_timeChanged)
+    Q_PROPERTY(qint64 actual_time READ actual_time WRITE setActual_time NOTIFY actual_timeChanged)
+
+
+
 
 public:
 
@@ -29,6 +35,9 @@ public:
     qint64 ava() const;
     qint64 perf() const;
     qint64 qua() const;
+    qint64 shift() const;
+    qint64 actual_time() const;
+    qint64 ideal_time() const;
 
 public slots:
 
@@ -41,6 +50,9 @@ public slots:
     void setAva(qint64 ava);
     void setPerf(qint64 perf);
     void setQua(qint64 qua);
+    void setShift(qint64 shift);
+    void setActual_time(qint64 actual_time);
+    void setIdeal_time(qint64 ideal_time);
 
 signals:
 
@@ -53,6 +65,9 @@ signals:
     void avaChanged(qint64 ava);
     void perfChanged(qint64 perf);
     void quaChanged(qint64 qua);
+    void shiftChanged(qint64 shift);
+    void actual_timeChanged(qint64 actual_time);
+    void ideal_timeChanged(qint64 ideal_time);
 
 public:
 
@@ -65,6 +80,9 @@ public:
     qint64 m_ava;
     qint64 m_perf;
     qint64 m_qua;
+    qint64 m_shift;
+    qint64 m_actual_time;
+    qint64 m_ideal_time;
 
 };
 
