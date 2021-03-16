@@ -17,9 +17,9 @@ Window {
             anchors.fill: parent
             onClicked: {
                 rect.grabToImage(function(result) {
-                                            imagePrinter.printImage(result);
-                                            result.saveToFile("something.png");
-                                        });
+                    imagePrinter.printImage(result.image)
+                    //                                            result.saveToFile("something.png")
+                });
             }
         }
 

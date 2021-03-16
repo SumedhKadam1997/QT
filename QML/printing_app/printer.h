@@ -12,7 +12,8 @@ public:
 
 public slots:
     Q_INVOKABLE void print(QString data);
-    Q_INVOKABLE void printImage(QImage imgImageSource);
+//    Q_INVOKABLE void printImage(QImage imgImageSource);
+    Q_INVOKABLE void printImage(QVariant var);
 };
 
 #endif // PRINTER_H

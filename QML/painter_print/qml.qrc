@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>pics/insert.png</file>
+        <file>pics/login_background.jpg</file>
+        <file>pics/logo.png</file>
+        <file>pics/pexels-miguel-á-padriñán-255379.jpg</file>
+        <file>pics/settings.png</file>
+    </qresource>
+</RCC>

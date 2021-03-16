@@ -1,6 +1,5 @@
 #include "printer.h"
 #include <QPrinter>
-//#include <QtPrintSupport/QPrinter>
 #include <QPainter>
 #include <QPrintDialog>
 #include <QPixmap>
@@ -48,13 +47,27 @@ void printer::print(QString strImageSource)
 
 }
 
-void printer::printImage(QImage imgImageSource)
+//void printer::printImage(QImage imgImageSource)
+//{
+//    QPrinter printer;
+//    QPrintDialog *dlg = new QPrintDialog(&printer,0);
+//    if(dlg->exec() == QDialog::Accepted) {
+//        QPainter painter(&printer);
+//        painter.drawImage(QPoint(0,0),imgImageSource);
+//        painter.end();
+//    }
+//}
+
+void printer::printImage(QVariant var)
 {
+    QImage img = qvariant_cast<QImage>(var);
+//    img.save("yay.png");
     QPrinter printer;
     QPrintDialog *dlg = new QPrintDialog(&printer,0);
     if(dlg->exec() == QDialog::Accepted) {
         QPainter painter(&printer);
-        painter.drawImage(QPoint(0,0),imgImageSource);
+        painter.drawImage(QPoint(0,0),img);
         painter.end();
     }
 }
+
