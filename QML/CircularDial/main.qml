@@ -29,7 +29,24 @@ Window {
             ctx.arc(centerX, centerY, width/4, -3.14159265, 0, false);
             ctx.lineTo(centerX, centerY);
             ctx.fill();
+
+            ctx.beginPath();
+            ctx.fillStyle = "red";
+            ctx.lineWidth = 5;
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, width/4, 0, 1.5, false);
+            ctx.lineTo(centerX, centerY);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.fillStyle = "black";
+            ctx.lineWidth = 5;
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, width/4, 1.5, 2.9, false);
+            ctx.lineTo(centerX, centerY);
+            ctx.fill();
         }
+
         Rectangle {
             anchors.centerIn:mycanvas
             width: 250

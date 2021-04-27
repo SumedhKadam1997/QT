@@ -8,6 +8,7 @@
 class dbmodel : public QSqlQueryModel
 {
     Q_OBJECT
+
 public:
 
     enum Roles {

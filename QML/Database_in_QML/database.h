@@ -20,11 +20,12 @@ public:
     ~ database();
 
     void dbconnect();
+    bool opendb();
+
 private:
     QSqlDatabase db;
 
 private:
-    bool opendb();
     bool restoredb();
     void closedb();
     bool createtable();
