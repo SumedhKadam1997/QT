@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>login.qml</file>
+        <file>signup.qml</file>
+        <file>home_screen.qml</file>
+        <file>go_to_signup.qml</file>
+        <file>go_to_login.qml</file>
+        <file>My_popup.qml</file>
+    </qresource>
+</RCC>
