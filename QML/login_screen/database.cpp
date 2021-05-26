@@ -13,7 +13,9 @@ database::database()
 
 database::~database()
 {
-
+    if(db.open()) {
+        db.close();
+    }
 }
 void database::dbconnect()
 {
@@ -34,17 +36,11 @@ bool database::opendb()
 
 
     if(db.open()){
-        this->setDb_open(true);
         qDebug() << "Databases Opennned! ";
         return true;
     } else {
         return false;
     }
-}
-
-bool database::db_open() const
-{
-    return m_db_open;
 }
 
 bool database::restoredb()
@@ -71,41 +67,14 @@ bool database::createtable()
         qDebug() << query.lastError().text();
         return false;
     } else {
-        if(db_open()) {
-            QSqlQuery query;
-            query.prepare("INSERT INTO members (first_name, email, username, password, gender)"
-                      "VALUES (:first_name, :email, :username, :password, :gender)");
-            query.bindValue(":first_name", "ADMIN");
-            query.bindValue(":email", "admin@verolt.com");
-            query.bindValue(":username", "ADMIN");
-            query.bindValue(":password", generate_hash("admin"));
-            query.bindValue(":gender", "Male");
-            if(!query.exec()){
-                qDebug() << "error while inserting";
-                qDebug() << query.lastError().text();
-                return false;
-            } else {
-                qDebug() << "Data Succesfully Inserted!";
-                return true;
-            }
-        }
-        return true;
-    }
-    return true;
-}
-
-bool database::insertdb(const QString &first_name, const QString &email, const QString &username, const QString &password, const QString &gender)
-{
-    if(db_open()){
         QSqlQuery query;
         query.prepare("INSERT INTO members (first_name, email, username, password, gender)"
                       "VALUES (:first_name, :email, :username, :password, :gender)");
-        query.bindValue(":first_name", first_name);
-        query.bindValue(":email", email);
-        query.bindValue(":username", username);
-        query.bindValue(":password", generate_hash(password));
-        query.bindValue(":gender", gender);
-
+        query.bindValue(":first_name", "ADMIN");
+        query.bindValue(":email", "admin@verolt.com");
+        query.bindValue(":username", "ADMIN");
+        query.bindValue(":password", generate_hash("admin"));
+        query.bindValue(":gender", "Male");
         if(!query.exec()){
             qDebug() << "error while inserting";
             qDebug() << query.lastError().text();
@@ -114,9 +83,28 @@ bool database::insertdb(const QString &first_name, const QString &email, const Q
             qDebug() << "Data Succesfully Inserted!";
             return true;
         }
-    } else {
-        qDebug() << "Failed to open the database";
+        return true;
+    }
+}
+
+bool database::insertdb(const QString &first_name, const QString &email, const QString &username, const QString &password, const QString &gender)
+{    
+    QSqlQuery query;
+    query.prepare("INSERT INTO members (first_name, email, username, password, gender)"
+                      "VALUES (:first_name, :email, :username, :password, :gender)");
+    query.bindValue(":first_name", first_name);
+    query.bindValue(":email", email);
+    query.bindValue(":username", username);
+    query.bindValue(":password", generate_hash(password));
+    query.bindValue(":gender", gender);
+
+    if(!query.exec()){
+        qDebug() << "error while inserting";
+        qDebug() << query.lastError().text();
         return false;
+    } else {
+        qDebug() << "Data Succesfully Inserted!";
+        return true;
     }
 }
 
@@ -156,13 +144,4 @@ QString database::generate_hash(QString password)
 {
     QString hash = QString(QCryptographicHash::hash(password.toUtf8(),QCryptographicHash::Sha256).toHex());
     return hash;
-}
-
-void database::setDb_open(bool db_open)
-{
-    if (m_db_open == db_open)
-        return;
-
-    m_db_open = db_open;
-    emit db_openChanged(m_db_open);
 }
