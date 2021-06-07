@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>home_page.qml</file>
+        <file>login.qml</file>
+        <file>admin_page.qml</file>
+        <file>student_page.qml</file>
+        <file>librarian_page.qml</file>
+        <file>other_page.qml</file>
+        <file>admin/student_view.qml</file>
+        <file>admin/book_view.qml</file>
+        <file>admin/librarian_view.qml</file>
+        <file>blank.qml</file>
+        <file>student/all_book_view.qml</file>
+        <file>student/pending_book_view.qml</file>
+        <file>student/issued_book_view.qml</file>
+        <file>librarian/all_book_view.qml</file>
+        <file>librarian/issued_book_view.qml</file>
+        <file>librarian/pending_book_view.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>assets/login_background.jpg</file>
+        <file>assets/logout.png</file>
+        <file>assets/quit.png</file>
+        <file>assets/home.png</file>
+    </qresource>
+</RCC>
