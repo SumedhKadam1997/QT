@@ -86,10 +86,9 @@ bool Database::insertPhoto(QString filename, QVariant photo, QString dateTime)
     QImage inImage = qvariant_cast<QImage>(photo);
     QBuffer inBuffer(&inByteArray);
     inBuffer.open(QIODevice::WriteOnly);
-    inImage.save(&inBuffer, "PNG");
+    inImage.save(&inBuffer, "png");
     QSqlQuery query;
-    query.prepare("INSERT INTO photos (filename, photo, date)"
-                      "VALUES (:filename, :photo, :date)");
+    query.prepare("INSERT INTO photos (filename, photo, date) VALUES (:filename, :photo, :date)");
     query.bindValue(":filename", filename);
     query.bindValue(":photo", inByteArray);
     query.bindValue(":date", dateTime);

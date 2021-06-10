@@ -1,29 +1,32 @@
-#ifndef GALLERYMODEL_H
-#define GALLERYMODEL_H
+#ifndef PHOTOSMODEL_H
+#define PHOTOSMODEL_H
 
 #include <QSqlQueryModel>
 #include <QObject>
-#include <QVariant>
-#include <QStyledItemDelegate>
 
-class GalleryModel : public QSqlQueryModel
+class PhotosModel : public QSqlQueryModel
 {
     Q_OBJECT
 public:
-    GalleryModel();
 
     enum Roles {
         IdRole = Qt::UserRole + 1,
-        PhotoRole,
-        NameRole,
-        DateRole
+        PhotoNameRole,
+        EmailRole
     };
+
+    explicit PhotosModel(QObject *parent = 0);
+
     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+
 protected:
+
     QHash<int, QByteArray> roleNames() const;
 
 public slots:
-    void updateModel();
+
+    void updateModel(QString query);
+    int getId(int row);
 };
 
-#endif // GALLERYMODEL_H
+#endif // PHOTOSMODEL_H
