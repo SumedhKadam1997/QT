@@ -8,7 +8,7 @@
 
 database::database()
 {
-
+    this->dbconnect();
 }
 
 database::~database()

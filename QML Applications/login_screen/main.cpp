@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<database>("Database",1 ,0,"Database");
     database db;
-    db.dbconnect();
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
