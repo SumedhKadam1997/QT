@@ -17,6 +17,7 @@ public:
     virtual void scanCameras() = 0;
     virtual void setIds() = 0;
     virtual void setActiveId(const QString &camera) = 0;
+protected:
     QList<QCameraInfo> allAvailableCameras;
 
 signals:

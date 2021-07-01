@@ -9,7 +9,6 @@ CONFIG += c++11
 SOURCES += \
         cameraproperties.cpp \
         defaultcamera.cpp \
-        icameracontext.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
