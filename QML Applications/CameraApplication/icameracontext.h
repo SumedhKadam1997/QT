@@ -13,7 +13,7 @@ class ICameraContext : public CameraProperties
     Q_OBJECT
 
 public:
-    explicit ICameraContext(QObject *parent = nullptr);
+    explicit ICameraContext(QObject *parent = nullptr) {};
     virtual void scanCameras() = 0;
     virtual void setIds() = 0;
     virtual void setActiveId(const QString &camera) = 0;

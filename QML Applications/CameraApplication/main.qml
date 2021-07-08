@@ -37,9 +37,9 @@ Window {
                 verticalAlignment: Text.AlignVCenter
             }
         }
-//        onAccepted: {
-//            camera.deviceId = modelData.deviceId
-//        }
+        onAccepted: {
+            camera.deviceId = modelData.deviceId
+        }
     }
     Button {
         id: frontCamButton
