@@ -8,39 +8,55 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
-
-    Shape {
-        id: trackShape
+    title: qsTr("ARC")
+    Rectangle {
         anchors.fill: parent
-        visible: true
 
-        ShapePath {
-            id: trackShapePath
-            strokeColor: "red"
-            fillColor: "white"
-            strokeWidth: 20
-            capStyle: Qt.RoundCap
+        Shape {
+            id: trackShape
+            anchors.fill: parent
+            visible: true
 
-            PathAngleArc {
-                id: path_arc
-                radiusX: 50
-                radiusY: 50
-                centerX: trackShape.width / 2
-                centerY: trackShape.height / 2
-                startAngle: -90
-                sweepAngle: my_slider.value
+            ShapePath {
+                id: trackShapePath
+                strokeColor: "red"
+                fillColor: "white"
+                strokeWidth: 10
+                //            capStyle: Qt.RoundCap
+                capStyle: Qt.SquareCap
+
+                PathAngleArc {
+                    id: path_arc
+                    radiusX: 50
+                    radiusY: 50
+                    centerX: trackShape.width / 2
+                    centerY: trackShape.height / 2
+                    startAngle: 144
+                    sweepAngle: my_slider.value
+                }
             }
         }
-    }
-    Slider {
-        id: my_slider
-        anchors.bottom: parent.bottom
-        stepSize: 1
-        value: 50
-        to: 360
-        anchors.bottomMargin: 20
-        anchors.horizontalCenter: parent.horizontalCenter
+        Image {
+            id: img_needle
+            x: trackShape.width / 2 - 30
+            y: trackShape.height / 2 - 30
+            source: "qrc:/Path 46.png"
+            transform: Rotation {
+                id: needle_rotate
+                angle: -80 + my_slider.value
+                origin.x: img_needle.width
+                origin.y: img_needle.height
+            }
+        }
+        Slider {
+            id: my_slider
+            anchors.bottom: parent.bottom
+            stepSize: 1
+            value: 0
+            to: 250
+            anchors.bottomMargin: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
     }
 }
 
