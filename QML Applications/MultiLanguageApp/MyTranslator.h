@@ -33,6 +33,10 @@ public slots:
             app->installTranslator(&mTranslator);
             qDebug() << "HINDI";
             break;
+        case MyLanguage::ENG:
+            app->removeTranslator(&mTranslator);
+            qDebug() << "ENGLISH";
+            break;
         default:
             app->removeTranslator(&mTranslator);
             break;

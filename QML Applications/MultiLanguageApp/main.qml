@@ -71,6 +71,24 @@ Window {
                 }
             }
         }
+        Rectangle {
+            x: 69
+            y: 169
+            width: 70
+            height: 30
+            Text {
+                id: txt_English
+                anchors.centerIn: parent
+                text: qsTr("ENGLISH")
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        myTranslate.changeLanguage(MyLang.ENG)
+                        console.log("English Clicked")
+                    }
+                }
+            }
+        }
     }
 }
 
