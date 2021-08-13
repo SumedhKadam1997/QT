@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>HomePage.qml</file>
+        <file>camera.qml</file>
+        <file>gallery.qml</file>
+    </qresource>
+</RCC>

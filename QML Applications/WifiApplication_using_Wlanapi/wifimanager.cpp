@@ -118,9 +118,9 @@ void WifiManager::getAvailableWifiList()
         pBssEntry = (WLAN_AVAILABLE_NETWORK *) &pBssList->Network[j];
         wprintf(L"Profile Name[%u]:  %ws\n", j, pBssEntry->strProfileName);
         std::cout << "Profile[" << j << "] ";
-        for (quint8 k = 0; k < pBssEntry->dot11Ssid.uSSIDLength; k++) {
-            std::cout << pBssEntry->dot11Ssid.ucSSID[k];
-        }
+//        for (quint8 k = 0; k < pBssEntry->dot11Ssid.uSSIDLength; k++) {
+//            std::cout << pBssEntry->dot11Ssid.ucSSID[k];
+//        }
         std::cout << std::endl;
     }
     std::cout << "END" << std::endl;
