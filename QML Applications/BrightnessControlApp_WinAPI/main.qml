@@ -21,15 +21,46 @@ Window {
     }
 
     Slider {
-        id: slider
+        id: control
         anchors.verticalCenter: parent.verticalCenter
-        stepSize: 1
+        stepSize: 10
         from: 0
         to: 100
+        value: display.currentBrightnessLevel
+        background: Rectangle {
+                x: control.leftPadding
+                y: control.topPadding + control.availableHeight / 2 - height / 2
+                implicitWidth: 200
+                implicitHeight: 4
+                width: control.availableWidth
+                height: implicitHeight
+                radius: 2
+                color: "#bdbebf"
+
+                Rectangle {
+                    width: control.visualPosition * parent.width
+                    height: parent.height
+                    color: "#21be2b"
+                    radius: 2
+                }
+//                MouseArea {
+//                    anchors.fill: parent
+//                    onReleased: {
+//                        display.changeBrightnessQProcess(control.value)
+//                    }
+//                }
+            }
+        onMoved: {
+            display.changeBrightnessWinAPI(control.value)
+            display.changeBrightnessQProcess(control.value)
+        }
+
         anchors.horizontalCenter: parent.horizontalCenter
+
 //        value: display.currentBrightnessLevel
         onValueChanged: {
-            display.changeBrightnessWinAPI(slider.value)
+//            display.changeBrightnessWinAPI(slider.value)
+//            display.changeBrightnessQProcess(control.value)
         }
     }
 }

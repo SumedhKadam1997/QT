@@ -14,21 +14,31 @@
 #include <QProcess>
 #include <physicalmonitorenumerationapi.h>
 #include <highlevelmonitorconfigurationapi.h>
+//#include <WmiMonitorBrightnessMethods>
+
+//using namespace root\\wmi;
 
 class DisplayManager : public QObject
 {
     Q_OBJECT
     QProcess brightnessProcess;
-    Q_PROPERTY(unsigned long currentBrightnessLevel READ currentBrightnessLevel WRITE setCurrentBrightnessLevel NOTIFY currentBrightnessLevelChanged)
-    unsigned long m_currentBrightnessLevel;
+    Q_PROPERTY(double currentBrightnessLevel READ currentBrightnessLevel WRITE setCurrentBrightnessLevel NOTIFY currentBrightnessLevelChanged)
+    double m_currentBrightnessLevel;
+
+    HMONITOR hMonitor = NULL;
+    HWND hWnd = NULL;
+    DWORD cPhysicalMonitors;
+    LPPHYSICAL_MONITOR pPhysicalMonitors = NULL;
+    DWORD minBrightnessLevel = 0 , maxBrightnessLevel = 0, currBrightnessLevel = 0;
 
 public:
     explicit DisplayManager(QObject *parent = nullptr);
+    void getCurrentBrightnessWinAPI();
     Q_INVOKABLE void changeBrightnessWinAPI(const unsigned long & brightnessValue);
-    void changeBrightnessQProcess(const int & brightnessValue);
+    Q_INVOKABLE void changeBrightnessQProcess(const double & brightnessValue);
 
-    unsigned long currentBrightnessLevel() const;
-    void setCurrentBrightnessLevel(unsigned long newCurrentBrightnessLevel);
+    double currentBrightnessLevel() const;
+    void setCurrentBrightnessLevel(double newCurrentBrightnessLevel);
 
 signals:
 

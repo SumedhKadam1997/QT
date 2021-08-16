@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 //    DisplayManager dispMan;
 //    dispMan.changeBrightnessWinAPI();
-//    dispMan.changeBrightnessQProcess(20);
+//    dispMan.changeBrightnessQProcess(80.0);
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("display", new DisplayManager());
