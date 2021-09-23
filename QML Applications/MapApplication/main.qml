@@ -19,8 +19,8 @@ Window {
         //        center: QtPositioning.coordinate(18.554437341937323, 73.88714732139219)
         plugin: Plugin {
             id: mapPlugin
-//            name: "mapboxgl"
-            name: "osm"
+            name: "mapboxgl"
+//            name: "osm"
 //            name: "googlemaps"
             locales: "en_IN"
 //            name: "googlemaps"
@@ -92,7 +92,7 @@ Window {
 //            console.log("Latitude : ", loc.latitude)
 //            console.log("Longitude : ", loc.longitude)
 //            map.activeMapType = MapType.StreetMap
-            mapType += 1
+//            mapType += 1
             console.log("Map Type Changed")
         }
     }

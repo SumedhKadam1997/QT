@@ -1,14 +1,20 @@
-QT += quick positioning location opengl concurrent sql
+QT += quick location opengl concurrent sql network
 
-CONFIG += c++11
-
-#CONFIG += location-private
-#qtConfig(geoservices_mapboxgl): QT += sql opengl
-#qtConfig(geoservices_osm): QT += concurrent
+CONFIG += c++14
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+ANDROID_EXTRA_LIBS += \
+    C:/Users/User/Desktop/android_openssl/latest/x86/libcrypto_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/x86/libssl_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/arm/libcrypto_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/arm/libssl_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/arm64/libcrypto_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/arm64/libssl_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/x86_64/libcrypto_1_1.so \
+    C:/Users/User/Desktop/android_openssl/latest/x86_64/libssl_1_1.so
 
 SOURCES += \
         assetitem.cpp \
@@ -48,3 +54,4 @@ DISTFILES += \
     android/res/values/libs.xml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+

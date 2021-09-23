@@ -5,6 +5,7 @@
 //#include "locationmodel.hpp"
 #include "assetlistmodel.hpp"
 #include <QTimer>
+#include <QSslSocket>
 
 
 //int main(int argc, char *argv[])
@@ -49,6 +50,7 @@ int main(int argc, char *argv[]) {
   QGuiApplication app(argc, argv);
 
   AssetListModel model;
+  qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
 
   QGeoCoordinate center(18.555921723127565, 73.88648464933829);
   model.createAsset(center, QColor("red"), "testing_name1");
