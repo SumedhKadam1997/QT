@@ -2,31 +2,34 @@
 #define LOCATION_HPP
 
 #include <QGeoCoordinate>
-#include <QObject>
+#include <QColor>
+#include <QDebug>
 
-class Location : public QObject {
-  Q_OBJECT
-  Q_PROPERTY(double longitude READ longitude WRITE setLongitude NOTIFY longitudeChanged)
-  Q_PROPERTY(double latitude READ latitude WRITE setLatitude NOTIFY latitudeChanged)
-  Q_PROPERTY(QGeoCoordinate coordinate READ coordinate WRITE setCoordinate NOTIFY coordinateChanged)
+class Location
+{
+    QString mName;
+    QGeoCoordinate mlocation;
+    QList<QGeoCoordinate> history;
+    QColor mColor;
+    int mAngle;
+
 public:
-  Location(QObject *parent = 0);
+    Location();
 
-  Q_SIGNAL void longitudeChanged();
-  Q_SIGNAL void latitudeChanged();
-  Q_SIGNAL void coordinateChanged();
+    QString name() const;
+    void setName(const QString &);
 
-  double longitude() const;
-  void setLongitude(double longitude);
+    QGeoCoordinate location() const;
+    void setLocation(const QGeoCoordinate &);
 
-  double latitude() const;
-  void setLatitude(double latitude);
+    QList<QGeoCoordinate> getHistory() const;
+    void appendHistory(const QGeoCoordinate &);
 
-  QGeoCoordinate coordinate() const;
-  void setCoordinate(const QGeoCoordinate &coordinate);
+    QColor color() const;
+    void setColor(const QColor &);
 
-private:
-  QGeoCoordinate m_coordinate;
+    int angle() const;
+    void setAngle(const int &);
 };
 
 #endif // LOCATION_HPP

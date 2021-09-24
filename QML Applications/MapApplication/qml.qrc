@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>mm_20_red.png</file>
         <file>MapMarker.qml</file>
+        <file>icon_Balloon_.png</file>
     </qresource>
 </RCC>

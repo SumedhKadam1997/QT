@@ -2,8 +2,6 @@
 #define ASSETLISTMODEL_HPP
 
 #include "assetitem.hpp"
-class NodeModel;
-class QQmlContext;
 #include <QAbstractListModel>
 
 struct Data {
@@ -25,9 +23,6 @@ public:
         ColorRole
     };
 
-    void register_objects(const QString &assetName, const QString &nodeName,
-                          QQmlContext *context);
-
     Q_INVOKABLE bool addAsset(QGeoCoordinate coord, int angle,
                               const QString &name);
     Q_INVOKABLE bool createAsset(QGeoCoordinate coord, const QColor &color,
@@ -40,7 +35,6 @@ public:
 
 private:
     QList<AssetItem> mAssets;
-    NodeModel *model;
 };
 
 #endif // ASSETLISTMODEL_HPP

@@ -20,7 +20,7 @@ SOURCES += \
         assetitem.cpp \
         assetlistmodel.cpp \
 #        location.cpp \
-#        locationmodel.cpp \
+#        locationlistmodel.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -40,8 +40,8 @@ HEADERS += \
     assetitem.hpp \
     assetlistmodel.hpp \
 #    location.hpp \
-#    locationmodel.hpp \
-    nodemodel.hpp
+#    locationlistmodel.hpp \
+#    nodemodel.hpp
 
 DISTFILES += \
     android/AndroidManifest.xml \

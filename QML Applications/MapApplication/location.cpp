@@ -1,39 +1,59 @@
 #include "location.hpp"
 
-Location::Location(QObject *parent) : QObject(parent), m_coordinate{0, 0} {
+Location::Location()
+{
 
 }
 
-double Location::longitude() const {
-    return m_coordinate.longitude();
+QString Location::name() const
+{
+    return mName;
 }
 
-void Location::setLongitude(double longitude) {
-    if (m_coordinate.longitude() == longitude)
-        return;
-    m_coordinate.setLongitude(longitude);
-    Q_EMIT longitudeChanged();
+void Location::setName(const QString &name)
+{
+    mName = name;
 }
 
-double Location::latitude() const {
-    return m_coordinate.latitude();
+QGeoCoordinate Location::location() const
+{
+    return mlocation;
 }
 
-void Location::setLatitude(double latitude) {
-    if (m_coordinate.latitude() == latitude)
-        return;
-    m_coordinate.setLatitude(latitude);
-    Q_EMIT latitudeChanged();
+void Location::setLocation(const QGeoCoordinate &location)
+{
+    if (location.isValid()) {
+        appendHistory(location);
+        mlocation = location;
+    }
 }
 
-QGeoCoordinate Location::coordinate() const {
-    return m_coordinate;
+QList<QGeoCoordinate> Location::getHistory() const
+{
+    return history;
 }
 
-void Location::setCoordinate(const QGeoCoordinate &coordinate) {
-    if (coordinate == m_coordinate)
-        return;
-    m_coordinate = coordinate;
-    Q_EMIT coordinateChanged();
+void Location::appendHistory(const QGeoCoordinate &location)
+{
+    history << location;
 }
 
+QColor Location::color() const
+{
+    return mColor;
+}
+
+void Location::setColor(const QColor &color)
+{
+    mColor = color;
+}
+
+int Location::angle() const
+{
+    return mAngle;
+}
+
+void Location::setAngle(const int &angle)
+{
+    mAngle = angle;
+}
