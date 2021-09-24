@@ -26,7 +26,7 @@ Window {
 //            name: "googlemaps"
 //            PluginParameter {
 //                name: "googlemaps.maps.apikey "
-//                value: "AIzaSyBD-Y0FneqI3BsCs3Qnp7nTntYdSWFmxZQ"
+//                value: ""
 //            }
         }
 //        MapItemView {
