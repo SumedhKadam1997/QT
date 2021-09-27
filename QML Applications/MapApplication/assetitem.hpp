@@ -4,6 +4,7 @@
 #include <QColor>
 #include <QGeoCoordinate>
 #include <QString>
+#include <QDebug>
 
 class AssetItem {
 public:

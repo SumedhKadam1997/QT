@@ -16,99 +16,37 @@ Window {
     property double latitude: gps.position.coordinate.latitude
     property double longitude: gps.position.coordinate.longitude
     property variant puneGolfRegion: QtPositioning.rectangle(QtPositioning.coordinate(18.560197708387605, 73.87943025330222), QtPositioning.coordinate(18.551877431743463, 73.89212607934934))
-
     property variant locationPuneGolf: QtPositioning.coordinate(18.560197708387605, 73.87943025330222)
-    //    onMapBearingChanged: {
-    //        console.log(mapBearing)
-    //    }
 
     PlaceSearchModel {
         id: searchModel
         plugin: mapPlugin
-        //        searchTerm: "Pizza"
         searchArea: QtPositioning.circle(locationPuneGolf)
         Component.onCompleted: update()
-
     }
-    ParallelAnimation {
-        id: paraAnimLeft
-
-        PropertyAnimation {
-            id: animBearingLeft
-            duration: 500
-            target: map
-            property: "bearing"
-            from: mapBearing
-            to: 0
-        }
-        PropertyAnimation {
-            id: animTiltLeft
-            duration: 5000
-            target: map
-            property: "tilt"
-            from: mapTilt
-            to: 0
-        }
-    }
-    ParallelAnimation {
-        id: paraAnimRight
-
-        PropertyAnimation {
-            id: animBearingRight
-            duration: 500
-            target: map
-            property: "bearing"
-            from: mapBearing
-            to: 359.99
-        }
-        PropertyAnimation {
-            id: animTiltRight
-            duration: 500
-            target: map
-            property: "tilt"
-            from: mapTilt
-            to: 0
-        }
-    }
-
-    //    Compass {
-    //        id: compass
-    //        active: true
-    //        CompassReading {
-    //            id: reading
-    //        }
-
-    //        onCurrentOrientationChanged: {
-    //           console.log("Compass orientation: ", currentOrientation)
-    //        }
-    //    }
 
     Map {
         id: map
         anchors.fill: parent
         zoomLevel: 10
-        onBearingChanged: {
-            console.log(bearing)
-            mapBearing = bearing
-        }
-        onTiltChanged: {
-            mapTilt = tilt
-        }
-
         bearing: 0
         visibleRegion: puneGolfRegion
-        //                activeMapType: supportedMapTypes[mapType]
-        //        center: QtPositioning.coordinate(18.554437341937323, 73.88714732139219)
+        activeMapType: supportedMapTypes[mapType]
         plugin: Plugin {
             id: mapPlugin
             name: "mapboxgl"
             //            name: "osm"
             locales: "en_IN"
-            //            name: "googlemaps"
             //            PluginParameter {
             //                name: "googlemaps.maps.apikey "
             //                value: ""
             //            }
+        }
+        onBearingChanged: {
+            mapBearing = bearing
+        }
+        onTiltChanged: {
+            mapTilt = tilt
         }
         MapItemView {
             id: searchMarker
@@ -143,7 +81,6 @@ Window {
         id: gps
         updateInterval: 1000
         active: true
-
         onPositionChanged: {
             var coord = gps.position.coordinate;
             console.log("Coordinate:", coord.longitude, coord.latitude);
@@ -164,7 +101,8 @@ Window {
         id: btnCentre
         text: "Centre"
         onClicked: {
-            map.fitViewportToGeoShape(puneGolfRegion, 20)
+            animCentreLoc.start()
+            //            map.fitViewportToGeoShape(puneGolfRegion, 20)
             //            map.center = gps.position.coordinate
             //            map.center = QtPositioning.coordinate(18.554437341937323, 73.88714732139219)
         }
@@ -192,9 +130,59 @@ Window {
         text: "North"
         anchors.left: btnSearchCancel.right
         onClicked: {
-            //            map.bearing = 0
-            map.bearing < 180 ? paraAnimLeft.start() : paraAnimRight.start()
-//            paraAnim.start()
+            map.bearing < 180 ? animTiltBearLeft.start() : animTiltBearRight.start()
+        }
+    }
+    PropertyAnimation {
+        id: animCentreLoc
+        target: map
+        property: "center"
+        from: map.center
+        to: gps.position.coordinate
+        duration: 1000
+        easing.type: Easing.InOutExpo
+    }
+
+    ParallelAnimation {
+        id: animTiltBearLeft
+        PropertyAnimation {
+            id: animBearingLeft
+            duration: 500
+            target: map
+            property: "bearing"
+            from: mapBearing
+            to: 0
+            easing.type: Easing.InOutExpo
+        }
+        PropertyAnimation {
+            id: animTiltLeft
+            duration: 5000
+            target: map
+            property: "tilt"
+            from: mapTilt
+            to: 0
+            easing.type: Easing.InOutExpo
+        }
+    }
+    ParallelAnimation {
+        id: animTiltBearRight
+        PropertyAnimation {
+            id: animBearingRight
+            duration: 500
+            target: map
+            property: "bearing"
+            from: mapBearing
+            to: 359.99
+            easing.type: Easing.InOutExpo
+        }
+        PropertyAnimation {
+            id: animTiltRight
+            duration: 500
+            target: map
+            property: "tilt"
+            from: mapTilt
+            to: 0
+            easing.type: Easing.InOutExpo
         }
     }
 }

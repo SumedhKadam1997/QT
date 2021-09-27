@@ -14,6 +14,7 @@ bool AssetListModel::addAsset(QGeoCoordinate coord, int angle,
         QGeoCoordinate c = ix.data(AssetRole).value<QGeoCoordinate>();
         Data data{coord, angle};
         bool result = setData(ix, QVariant::fromValue(data), AssetRole);
+        qDebug() << "Asset Added";
         return result;
     }
     return false;
