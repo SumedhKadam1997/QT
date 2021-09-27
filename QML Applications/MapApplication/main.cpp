@@ -4,7 +4,6 @@
 #include "assetlistmodel.hpp"
 #include <QTimer>
 #include <QSslSocket>
-//#include <random>
 
 
 int main(int argc, char *argv[]) {
@@ -17,7 +16,7 @@ int main(int argc, char *argv[]) {
   qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
 
   QGeoCoordinate center(18.555921723127565, 73.88648464933829);
-  model.createAsset(center, QColor("red"), "testing_name1");
+  model.createAsset(center, QColor("red"), "buggy");
 
   QGeoCoordinate pos1{center};
   QQmlApplicationEngine engine;
@@ -30,7 +29,7 @@ int main(int argc, char *argv[]) {
   QObject::connect(&timer, &QTimer::timeout, [&model, &pos1]() {
     pos1 = QGeoCoordinate{0.00001 + pos1.latitude(),
                           0.00001 + pos1.longitude()};
-    model.addAsset(pos1, 50, "testing_name1");
+    model.addAsset(pos1, 50, "buggy");
   });
 //  timer.start(1000);
 

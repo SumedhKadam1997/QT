@@ -1,4 +1,4 @@
-QT += quick location opengl concurrent sql network
+QT += quick location opengl concurrent sql network sensors
 
 CONFIG += c++14
 

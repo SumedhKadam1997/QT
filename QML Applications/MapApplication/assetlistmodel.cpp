@@ -5,8 +5,7 @@ AssetListModel::AssetListModel(QObject *parent) : QAbstractListModel(parent) {
 
 bool AssetListModel::addAsset(QGeoCoordinate coord, int angle,
                               const QString &name) {
-    auto it =
-            std::find_if(mAssets.begin(), mAssets.end(),
+    auto it = std::find_if(mAssets.begin(), mAssets.end(),
                          [&](AssetItem const &obj) { return obj.name() == name; });
     if (it != mAssets.end()) {
         // append

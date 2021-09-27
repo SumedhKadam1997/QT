@@ -5,15 +5,15 @@ MapQuickItem
 {
     id: assetMapItem2
     anchorPoint.x: imgLocMarker.width / 2
-    anchorPoint.y: imgLocMarker.height / 2
+    anchorPoint.y: imgLocMarker.height
     property string name: ""
     visible: true
     sourceItem: Column {
         Image {
             id: imgLocMarker
             width: 20
-            height: 30
-            source: "qrc:/mm_20_red.png"
+            height: 20
+            source: "qrc:/car.png"
         }
         Text {
             text: name
