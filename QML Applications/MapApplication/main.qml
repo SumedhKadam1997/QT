@@ -48,6 +48,19 @@ Window {
         onTiltChanged: {
             mapTilt = tilt
         }
+        MapQuickItem {
+            id: locpOinter
+            coordinate: gps.position.coordinate
+            anchorPoint.x: imgMarker.width / 2
+            anchorPoint.y: imgMarker.height
+            sourceItem:
+                Image {
+                id: imgMarker
+                source: "qrc:/mm_20_red.png"
+            }
+        }
+
+
         MapItemView {
             id: searchMarker
             model: searchModel
@@ -67,15 +80,15 @@ Window {
                 }
             }
         }
-        MapItemView {
-            model: assetmodel
-            delegate: MapMarker{
-                coordinate: assetData
-                name: nameData
-                transformOrigin: Item.Center
-                z:100
-            }
-        }
+//        MapItemView {
+//            model: assetmodel
+//            delegate: MapMarker{
+//                coordinate: assetData
+//                name: nameData
+//                transformOrigin: Item.Center
+//                z:100
+//            }
+//        }
     }
     PositionSource {
         id: gps
