@@ -1,0 +1,1 @@
+INSERT INTO basePath (startName, endName, latitude, longitude) VALUES ("hole1", "hole2", 18.555784129677242, 73.8843211442432)

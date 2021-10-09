@@ -1,4 +1,4 @@
-QT += quick location opengl concurrent sql network sensors
+QT += core quick location opengl concurrent sql network sensors
 
 CONFIG += c++14
 
@@ -7,21 +7,25 @@ CONFIG += c++14
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 ANDROID_EXTRA_LIBS += \
-    C:/Users/User/Desktop/android_openssl/latest/x86/libcrypto_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/x86/libssl_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/arm/libcrypto_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/arm/libssl_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/arm64/libcrypto_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/arm64/libssl_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/x86_64/libcrypto_1_1.so \
-    C:/Users/User/Desktop/android_openssl/latest/x86_64/libssl_1_1.so
+    $$PWD/LIBS/x86/libcrypto_1_1.so \
+    $$PWD/LIBS/x86/libssl_1_1.so \
+    $$PWD/LIBS/arm/libcrypto_1_1.so \
+    $$PWD/LIBS/arm/libssl_1_1.so \
+    $$PWD/LIBS/arm64/libcrypto_1_1.so \
+    $$PWD/LIBS/arm64/libssl_1_1.so \
+    $$PWD/LIBS/x86_64/libcrypto_1_1.so \
+    $$PWD/LIBS/x86_64/libssl_1_1.so
+
 
 SOURCES += \
         assetitem.cpp \
         assetlistmodel.cpp \
 #        location.cpp \
 #        locationlistmodel.cpp \
-        main.cpp
+    database.cpp \
+        main.cpp \
+    navbackend.cpp \
+    navbackendjson.cpp
 
 RESOURCES += qml.qrc
 
@@ -41,7 +45,16 @@ HEADERS += \
     assetlistmodel.hpp \
 #    location.hpp \
 #    locationlistmodel.hpp \
-#    nodemodel.hpp
+ \#    nodemodel.hpp
+    database.hpp \
+    navbackend.hpp \
+    navbackendjson.hpp
+
+#RESOURCES += \ libs.qrc
+#    qrc:/openssl/android_openssl/latest/x86_64/libcrypto_1_1.so \
+#    qrc:/openssl/android_openssl/latest/x86_64/libssl_1_1.so \
+#    qrc:/openssl/android_openssl/latest/x86/libcrypto_1_1.so \
+#    qrc:/openssl/android_openssl/latest/x86/libssl_1_1.so \
 
 DISTFILES += \
     android/AndroidManifest.xml \

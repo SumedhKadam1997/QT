@@ -1,9 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>mm_20_red.png</file>
         <file>MapMarker.qml</file>
-        <file>icon_Balloon_.png</file>
-        <file>car.png</file>
+        <file>assets/car.png</file>
+        <file>assets/icon_Balloon_.png</file>
+        <file>assets/mm_20_red.png</file>
+        <file>assets/scale.png</file>
+        <file>assets/scale_end.png</file>
+        <file>assets/DarkMapStyle.png</file>
+        <file>assets/LightMapStyle.png</file>
+        <file>assets/SatelliteMap Style.png</file>
+        <file>assets/TerrainMap Style.png</file>
+        <file>MapRoutes.qml</file>
+        <file>paths.json</file>
     </qresource>
 </RCC>
