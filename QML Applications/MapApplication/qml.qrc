@@ -13,5 +13,6 @@
         <file>assets/TerrainMap Style.png</file>
         <file>MapRoutes.qml</file>
         <file>paths.json</file>
+        <file>Minimap.qml</file>
     </qresource>
 </RCC>

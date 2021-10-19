@@ -222,6 +222,7 @@ Window {
                 coordinate: QtPositioning.coordinate(18.553286, 73.888045)
                 anchorPoint.x: imgMarker.width / 2
                 anchorPoint.y: imgMarker.height
+                visible: false
                 sourceItem:
                     Image {
                     id: imgMarker
@@ -249,8 +250,8 @@ Window {
                 id: polyLine
                 line.width: 5
                 line.color: "red"
-//                visible: false
-                visible: map.zoomLevel > 16 ? true : false
+                visible: false
+//                visible: map.zoomLevel > 16 ? true : false
 //                path: nav.path
 //                path: db.basePath
                 path: navJSON.basePath
@@ -259,7 +260,8 @@ Window {
                 id: polyLinenav
                 line.width: 5
                 line.color: "blue"
-                visible: map.zoomLevel > 16 ? true : false
+                visible: false
+//                visible: map.zoomLevel > 16 ? true : false
 //                path: nav.path
 //                path: db.basePath
                 path: navJSON.navPath
