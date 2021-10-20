@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "weatherinfo.hpp"
+#include "fulldayforecast.hpp"
 
 
 int main(int argc, char *argv[])
@@ -9,11 +11,16 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
+    qmlRegisterType<WeatherInfo>("WeatherInfo", 1, 0, "WeatherInfo");
+    qmlRegisterType<FullDayForecast>("ForecastWeather", 1, 0, "ForecastWeather");
+
     QGuiApplication app(argc, argv);
 
-    WeatherInfo weather;
-    weather.getWeatherData();
-//    qDebug() << "Sunrise : " << weather.epochToHumanReadableTime(1634605161);
+//    FullDayForecast weather;
+//    weather.getHourlyWeatherData();
+
+//    WeatherInfo weather;
+//    weather.getWeatherData();
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -22,17 +29,6 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-//    qDebug() << weather.cityName();
-//    qDebug() << weather.sunrise();
-//    qDebug() << weather.sunset();
-//    qDebug() << weather.cloudDesc();
-//    qDebug() << weather.cloudIcon();
-//    qDebug() << weather.currentTemp();
-//    qDebug() << weather.feelsLike();
-//    qDebug() << weather.humidity();
-//    qDebug() << weather.maxTemp();
-//    qDebug() << weather.minTemp();
-//    qDebug() << weather.pressure();
     engine.load(url);
 
     return app.exec();

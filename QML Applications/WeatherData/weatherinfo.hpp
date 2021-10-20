@@ -4,19 +4,23 @@
 #include <QObject>
 #include <QtNetwork>
 #include <QJsonDocument>
+#include <QTimer>
 #include <QDate>
 #include <QDateTime>
 #include <QDebug>
 
 /* Open Weather API URL for Forecast data */
 const QString WeatherURL = "http://api.openweathermap.org/data/2.5/";
+const QString WeatherOnecallURL = "https://api.openweathermap.org/data/2.5/onecall";
 
 /* Parameters for Weather URL */
 #define CURRENTWEATHER "weather?q="
 #define LATLONG        "weather?lat=18.555432984399253&lon=73.88700187041067"
+#define LATLONGONECALL "?lat=18.555432984399253&lon=73.88700187041067"
 #define CITYFORECAST   "forecast?q="
 #define DAILYFORECAST  "forecast/daily?q="
-#define FORCASTDAYS    "&cnt=5"
+#define EXCLUDE        "&exclude=current,minutely,daily,alerts"
+#define FORCASTDAYS    "&cnt=24"
 #define UNIT           "&units=metric"
 #define APPIDP         "&appid=425b1230718c386871a63f29d75f1907"
 #define APPIDQ         "&appid=36496bad1955bf3365448965a42b9eac"
@@ -41,6 +45,7 @@ class WeatherInfo : public QObject
     QNetworkAccessManager WeatherNAM;
     QJsonDocument weatherJSON;
     QDateTime timestamp;
+    QTimer *timer;
 
     QString m_currentTemp;
     QString m_maxTemp;
@@ -61,6 +66,7 @@ class WeatherInfo : public QObject
 
 public:
     explicit WeatherInfo(QObject *parent = nullptr);
+    WeatherInfo(const double & windSpeed, const double & temp, const QString & cloudIcon, const int & windDirection);
     void getWeatherData();
     void processWeatherData(QNetworkReply *);
 

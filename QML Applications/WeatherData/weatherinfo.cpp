@@ -2,15 +2,27 @@
 
 WeatherInfo::WeatherInfo(QObject *parent) : QObject(parent)
 {
+    timer = new QTimer();
+    timer->start(60000);
+    this->getWeatherData();
     connect(&WeatherNAM, &QNetworkAccessManager::finished, this, &WeatherInfo::processWeatherData);
+    connect(timer, &QTimer::timeout, this, &WeatherInfo::getWeatherData);
+}
+
+WeatherInfo::WeatherInfo(const double &windSpeed, const double &temp, const QString &cloudIcon, const int &windDirection)
+{
+    this->setWindSpeed(QString::number(windSpeed));
+    this->setCurrentTemp(QString::number(temp));
+    this->setCloudIcon(cloudIcon);
+    this->setWindDirection(QString::number(windDirection));
 }
 
 void WeatherInfo::getWeatherData()
 {
     //    WeatherNAM.get(QNetworkRequest(WeatherURL + CURRENTWEATHER + "Pune"+ UNIT + APPIDP));
-    WeatherNAM.get(QNetworkRequest(WeatherURL + LATLONG + UNIT + APPIDP));
+//    WeatherNAM.get(QNetworkRequest(WeatherURL + LATLONG + UNIT + APPIDP));
     //    WeatherNAM.get(QNetworkRequest(WeatherURL + CITYFORECAST + "Pune" + UNIT + APPIDP));
-    //    WeatherNAM.get(QNetworkRequest(WeatherURL + DAILYFORECAST + "Pune" + UNIT + APPIDQ));
+        WeatherNAM.get(QNetworkRequest(WeatherURL + DAILYFORECAST + "Pune" + UNIT + APPIDQ));
 }
 
 void WeatherInfo::processWeatherData(QNetworkReply * reply)
@@ -22,15 +34,13 @@ void WeatherInfo::processWeatherData(QNetworkReply * reply)
 
         qDebug() << weatherJSON;
         setCityName(weatherData.value(QStringLiteral("name")).toString());
-        qDebug() << "City Name" << cityName();
 
         QJsonObject temporaryobj;
         QJsonValue  weatherValue;
 
-        double visibile = weatherData.value(QStringLiteral("visibility")).toDouble() / 1000;
+        double visible = weatherData.value(QStringLiteral("visibility")).toDouble() / 1000;
 
-        setVisibility(QString::number(visibile));
-        qDebug() << "Visibility" << visibility();
+        setVisibility(QString::number(visible));
         if (weatherData.contains(QStringLiteral("sys"))) {
             weatherValue = weatherData.value(QStringLiteral("sys"));
             temporaryobj = weatherValue.toObject();
@@ -39,13 +49,9 @@ void WeatherInfo::processWeatherData(QNetworkReply * reply)
             timestamp.setTime_t(weatherValue.toInt());
             setSunrise(timestamp.time().toString());
 
-            qDebug() << "Sunrise" << sunrise();
-
             weatherValue = temporaryobj.value(QStringLiteral("sunset"));
             timestamp.setTime_t(weatherValue.toInt());
             setSunset(timestamp.time().toString());
-
-            qDebug() << "Sunset" << sunset();
         }
 
         if (weatherData.contains("wind")) {
@@ -55,11 +61,8 @@ void WeatherInfo::processWeatherData(QNetworkReply * reply)
             weatherValue = temporaryobj.value("speed");
             setWindSpeed(QString::number(weatherValue.toDouble()));
 
-            qDebug() << "Wind Speed" << windSpeed();
-
             weatherValue = temporaryobj.value("deg");
             setWindDirection(QString::number(weatherValue.toDouble()));
-            qDebug() << "Wind Direction" << windDirection();
         }
 
         if (weatherData.contains(QStringLiteral("weather"))) {
@@ -69,11 +72,9 @@ void WeatherInfo::processWeatherData(QNetworkReply * reply)
 
             weatherValue = temporaryobj.value(QStringLiteral("description"));
             setCloudDesc(weatherValue.toString());
-            qDebug() << "Cloud Desc" << cloudDesc();
 
             weatherValue = temporaryobj.value(QStringLiteral("icon"));
             setCloudIcon(weatherValue.toString());
-            qDebug() << "CLoud Icon" << cloudIcon();
         }
 
         if (weatherData.contains(QStringLiteral("main"))) {
@@ -82,27 +83,21 @@ void WeatherInfo::processWeatherData(QNetworkReply * reply)
 
             weatherValue = temporaryobj.value(QStringLiteral("temp"));
             setCurrentTemp(QString::number(weatherValue.toDouble()));
-            qDebug() << "Current Temp" << currentTemp();
 
             weatherValue = temporaryobj.value(QStringLiteral("temp_min"));
             setMinTemp(QString::number(weatherValue.toDouble()));
-            qDebug() << "Min Temp" << minTemp();
 
             weatherValue = temporaryobj.value(QStringLiteral("temp_max"));
             setMaxTemp(QString::number(weatherValue.toDouble()));
-            qDebug() << "Max Temp" << maxTemp();
 
             weatherValue = temporaryobj.value(QStringLiteral("feels_like"));
             setFeelsLike(QString::number(weatherValue.toDouble()));
-            qDebug() << "Feels Like" << feelsLike();
 
             weatherValue = temporaryobj.value(QStringLiteral("humidity"));
             setHumidity(QString::number(weatherValue.toInt()));
-            qDebug() << "Humidity" << humidity();
 
             weatherValue = temporaryobj.value(QStringLiteral("pressure"));
             setPressure(QString::number(weatherValue.toInt()));
-            qDebug() << "Pressure" << pressure();
         }
     }
 }
