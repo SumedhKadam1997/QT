@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "csvwriter.hpp"
 
 
@@ -13,10 +14,11 @@ int main(int argc, char *argv[])
 
     CSVWriter csv;
     csv.writeCSV();
-//    QThread.
     csv.readCSV();
+//    csv.
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("csv", &csv);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
