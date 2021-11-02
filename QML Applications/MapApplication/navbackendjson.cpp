@@ -54,7 +54,7 @@ bool NavBackendJSON::getBasePathfromJSON(const QString & path)
                 m_basePath.append(QVariant::fromValue(QGeoCoordinate(jsonObj["latitude"].toDouble(), jsonObj["longitude"].toDouble())));
                 qDebug() << "From JSON" << jsonObj["latitude"].toDouble();
                 qDebug() << "From JSON" << jsonObj["longitude"].toDouble();
-                emit navPathChanged();
+                emit basePathChanged();
             }
             if (m_basePath.count() > 0) {
                 return true;

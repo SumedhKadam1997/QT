@@ -4,6 +4,7 @@ import QtQuick.Controls 2.12
 import QtLocation 5.15
 import QtPositioning 5.15
 import QtSensors 5.15
+import "componentCreation.js" as MyScript
 
 Window {
     id: window
@@ -19,7 +20,8 @@ Window {
     //    9 = black with marking
     //    13 = terrain india
 
-
+    property var comp
+    property var obj
     property variant scaleLengths: [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000]
     property int mapType: 1
     property double mapBearing
@@ -250,22 +252,22 @@ Window {
                 id: polyLine
                 line.width: 5
                 line.color: "red"
-                visible: false
+                visible: true
 //                visible: map.zoomLevel > 16 ? true : false
 //                path: nav.path
 //                path: db.basePath
                 path: navJSON.basePath
             }
-            MapPolyline {
-                id: polyLinenav
-                line.width: 5
-                line.color: "blue"
-                visible: false
-//                visible: map.zoomLevel > 16 ? true : false
-//                path: nav.path
-//                path: db.basePath
-                path: navJSON.navPath
-            }
+//            MapPolyline {
+//                id: polyLinenav
+//                line.width: 5
+//                line.color: "blue"
+//                visible: true
+////                visible: map.zoomLevel > 16 ? true : false
+////                path: nav.path
+////                path: db.basePath
+//                path: navJSON.navPath
+//            }
 
             MapItemView {
                 id: stopsMarker
@@ -501,6 +503,7 @@ Window {
             anchors.left: btnSearchCancel.right
             onClicked: {
                 map.bearing < 180 ? animTiltBearLeft.start() : animTiltBearRight.start()
+//                map.zoomLevel
             }
         }
         Button {
@@ -512,34 +515,57 @@ Window {
             }
         }
         Button {
-            id: btnRemPath
-            text: "Clear Path"
+            id: btnCreateComp
+            text: "Create Comp"
             anchors.left: btnGolf.right
             onClicked: {
-                for (var i = 0; i <= polyLine.pathLength() - 1; ++i) {
-                    polyLine.removeCoordinate(i)
-                }
+//                comp = Qt.createComponent("qrc:/navPathPolyLine.qml")
+//                if (comp.status == Component.Ready)
+//                    obj = comp.createObject(map);
+                console.log("Creating polyline")
+                MyScript.createPloyLine()
+                console.log("Created Polyline")
             }
         }
         Button {
-            id: btnAddPath
-            text: "Start Tracking"
-            anchors.left: btnRemPath.right
+            id: btnDemComp
+            text: "Delete Comp"
+            anchors.left: btnCreateComp.right
             onClicked: {
-                pathTrack = true
-                //                polyLine.addCoordinate(locationPuneGolf)
+//                obj.destroy()
+                MyScript.deletePolyLine()
             }
         }
-        Button {
-            id: btnStopPath
-            text: "Stop Tracking"
-            anchors.top: btnAddPath.bottom
-            anchors.left: parent.left
-            onClicked: {
-                pathTrack = false
-                //                polyLine.addCoordinate(locationPuneGolf)
-            }
-        }
+
+//        Button {
+//            id: btnRemPath
+//            text: "Clear Path"
+//            anchors.left: btnGolf.right
+//            onClicked: {
+//                for (var i = 0; i <= polyLine.pathLength() - 1; ++i) {
+//                    polyLine.removeCoordinate(i)
+//                }
+//            }
+//        }
+//        Button {
+//            id: btnAddPath
+//            text: "Start Tracking"
+//            anchors.left: btnRemPath.right
+//            onClicked: {
+//                pathTrack = true
+//                //                polyLine.addCoordinate(locationPuneGolf)
+//            }
+//        }
+//        Button {
+//            id: btnStopPath
+//            text: "Stop Tracking"
+//            anchors.top: btnAddPath.bottom
+//            anchors.left: parent.left
+//            onClicked: {
+//                pathTrack = false
+//                //                polyLine.addCoordinate(locationPuneGolf)
+//            }
+//        }
         Item {
             id: scale
             z: map.z + 3

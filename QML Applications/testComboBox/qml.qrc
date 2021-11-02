@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>home.qml</file>
-        <file>otpScreen.qml</file>
+        <file>CustomPopup.qml</file>
+        <file>vswSDf.jpeg</file>
     </qresource>
 </RCC>

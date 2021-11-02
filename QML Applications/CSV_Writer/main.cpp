@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "csvwriter.hpp"
 
 
 int main(int argc, char *argv[])
@@ -9,6 +10,11 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
+
+    CSVWriter csv;
+    csv.writeCSV();
+//    QThread.
+    csv.readCSV();
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

@@ -14,5 +14,7 @@
         <file>MapRoutes.qml</file>
         <file>paths.json</file>
         <file>Minimap.qml</file>
+        <file>navPathPolyLine.qml</file>
+        <file>componentCreation.js</file>
     </qresource>
 </RCC>

@@ -20,9 +20,9 @@ WeatherInfo::WeatherInfo(const double &windSpeed, const double &temp, const QStr
 void WeatherInfo::getWeatherData()
 {
     //    WeatherNAM.get(QNetworkRequest(WeatherURL + CURRENTWEATHER + "Pune"+ UNIT + APPIDP));
-//    WeatherNAM.get(QNetworkRequest(WeatherURL + LATLONG + UNIT + APPIDP));
+    WeatherNAM.get(QNetworkRequest(WeatherURL + LATLONG + UNIT + APPIDP));
     //    WeatherNAM.get(QNetworkRequest(WeatherURL + CITYFORECAST + "Pune" + UNIT + APPIDP));
-        WeatherNAM.get(QNetworkRequest(WeatherURL + DAILYFORECAST + "Pune" + UNIT + APPIDQ));
+//        WeatherNAM.get(QNetworkRequest(WeatherURL + DAILYFORECAST + "Pune" + UNIT + APPIDQ));
 }
 
 void WeatherInfo::processWeatherData(QNetworkReply * reply)
@@ -59,7 +59,7 @@ void WeatherInfo::processWeatherData(QNetworkReply * reply)
             temporaryobj = weatherValue.toObject();
 
             weatherValue = temporaryobj.value("speed");
-            setWindSpeed(QString::number(weatherValue.toDouble()));
+            setWindSpeed(QString::number(weatherValue.toDouble() * 3.6));
 
             weatherValue = temporaryobj.value("deg");
             setWindDirection(QString::number(weatherValue.toDouble()));
