@@ -15,7 +15,8 @@ ApplicationWindow {
         text: "Add"
         anchors.centerIn: parent
         onClicked: {
-            csv.setPlayer1Score(2, "34")
+//            csv.setPlayer1Score(2, "34")
+            csv.player1Score[3] = "34"
         }
     }
     Button {
@@ -24,7 +25,7 @@ ApplicationWindow {
         anchors.left: btn.right
         anchors.verticalCenter:  btn.verticalCenter
         onClicked: {
-            csv.getPlayer1Score()
+//            csv.getPlayer1Score()
         }
     }
 }
