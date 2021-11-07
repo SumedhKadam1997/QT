@@ -1,6 +1,6 @@
 # Do add any build directory in repository
 **/build-*/
-
+*build
 # Skip Qt-Creator generated .user files
 *.*.user
 
