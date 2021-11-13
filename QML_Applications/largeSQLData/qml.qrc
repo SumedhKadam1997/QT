@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>table.qml</file>
+        <file>list.qml</file>
+    </qresource>
+</RCC>
