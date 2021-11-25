@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>languages/MultiLingualApp_HIN.qm</file>
-        <file>languages/MultiLingualApp_JAP.qm</file>
-    </qresource>
-</RCC>

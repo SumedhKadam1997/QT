@@ -319,8 +319,8 @@ Window {
                 id: maMap
                 anchors.fill: parent
                 onPressAndHold: {
-                    clickPointer.coordinate = map.toCoordinate(Qt.point(mouse.x,mouse.y))
-                    console.log(clickPointer.coordinate)
+//                    clickPointer.coordinate = map.toCoordinate(Qt.point(mouse.x,mouse.y))
+                    console.log(map.toCoordinate(Qt.point(mouse.x,mouse.y)))
                 }
                 onClicked: {
                     clickPointer.visible = false

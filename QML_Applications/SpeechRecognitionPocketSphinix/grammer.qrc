@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/grammar">
-        <file alias="main">grammar/directions.jsgf</file>
-        <file alias="yesno">grammar/yesno.jsgf</file>
-    </qresource>
-</RCC>
