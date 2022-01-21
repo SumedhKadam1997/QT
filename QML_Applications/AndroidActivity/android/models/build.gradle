@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+    }
+//    buildFeatures {
+//        buildConfig = false
+//    }
+    sourceSets {
+        main {
+            assets.srcDirs += "$buildDir/generated/assets"
+        }
+    }
+}
+
+repositories {
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+    jcenter()
+    maven {
+        url 'https://mvnrepository.com/artifact/com.android.tools.lint/lint-gradle-api'
+    }
+}
+
+tasks.register('genUUID') {
+    def uuid = UUID.randomUUID().toString()
+    def odir = file("$buildDir/generated/assets/model-en-in")
+    def ofile = file("$odir/uuid")
+    doLast {
+        mkdir odir
+        ofile.text = uuid
+    }
+}
+
+preBuild.dependsOn(genUUID)
