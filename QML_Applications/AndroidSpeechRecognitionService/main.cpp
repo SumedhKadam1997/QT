@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
         }
     }
 #endif
+
     QQmlApplicationEngine engine;
 
     SpeechRecognitionService *speechService = new SpeechRecognitionService(&app);

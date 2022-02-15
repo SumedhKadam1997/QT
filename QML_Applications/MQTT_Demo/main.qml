@@ -77,4 +77,64 @@ Window {
             mqtt.disconnectHost()
         }
     }
+    Button {
+        id: btnPos1
+        text: "Pos 1"
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/position", "18.33898155410398,74.0460613606794,10,0")
+        }
+    }
+    Button {
+        id: btnPos2
+        text: "Pos 2"
+        anchors.left: btnPos1.right
+        anchors.bottom: parent.bottom
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/position", "18.656075119075645,74.97819236379377,20,30")
+        }
+    }    Button {
+        id: btnPos3
+        text: "Pos 3"
+        anchors.left: btnPos2.right
+        anchors.bottom: parent.bottom
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/position", "18.254236836934393,75.69129973363336,30,50")
+        }
+    }
+    Button {
+        id: btnPos4
+        text: "Pos 4"
+        anchors.left: btnPos3.right
+        anchors.bottom: parent.bottom
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/position", "19.992981816314447,77.52524943695498,40,70")
+        }
+    }
+    Button {
+        id: btnPos5
+        text: "Pos 5"
+        anchors.left: btnPos4.right
+        anchors.bottom: parent.bottom
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/position", "16.85021934985992,74.61753547365119,50,80")
+        }
+    }
+
+    TextField {
+        id: txtInput
+        anchors.centerIn: parent
+    }
+
+    Button {
+        id: btnTextMessage
+        anchors.horizontalCenter: txtInput.horizontalCenter
+        anchors.top: txtInput.bottom
+        anchors.topMargin: 20
+        text: "Send Message"
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/notify", txtInput.text)
+        }
+    }
 }

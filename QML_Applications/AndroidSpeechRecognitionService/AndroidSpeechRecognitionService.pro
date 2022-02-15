@@ -23,6 +23,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     android/AndroidManifest.xml \
+    android/assets/picofiles/golf_voice_assistant.rhn \
+    android/assets/picofiles/jarvis_android.ppn \
+    android/assets/picofiles/smart_lighting_android.rhn \
     android/build.gradle \
     android/gradle.properties \
     android/gradle/wrapper/gradle-wrapper.jar \
@@ -31,41 +34,57 @@ DISTFILES += \
     android/gradlew.bat \
     android/models/build.gradle \
     android/models/src/main/AndroidManifest.xml \
-    android/models/src/main/assets/model-en-in/README \
-    android/models/src/main/assets/model-en-in/am/final.mdl \
-    android/models/src/main/assets/model-en-in/am/frame_subsampling_factor \
-    android/models/src/main/assets/model-en-in/conf/mfcc.conf \
-    android/models/src/main/assets/model-en-in/conf/model.conf \
-    android/models/src/main/assets/model-en-in/graph/HCLG.fst \
-    android/models/src/main/assets/model-en-in/graph/word_boundary.int \
-    android/models/src/main/assets/model-en-in/graph/words.txt \
-    android/models/src/main/assets/model-en-in/ivector/final.dubm \
-    android/models/src/main/assets/model-en-in/ivector/final.ie \
-    android/models/src/main/assets/model-en-in/ivector/final.mat \
-    android/models/src/main/assets/model-en-in/ivector/global_cmvn.stats \
-    android/models/src/main/assets/model-en-in/ivector/ivector.conf \
-    android/models/src/main/assets/model-en-in/ivector/online_cmvn.conf \
-    android/models/src/main/assets/model-en-in/ivector/splice.conf \
-    android/models/src/main/assets/model-en-in/rescore/G.carpa \
-    android/models/src/main/assets/model-en-in/rescore/G.fst \
-    android/models/src/main/assets/model-en-us/README \
-    android/models/src/main/assets/model-en-us/am/final.mdl \
-    android/models/src/main/assets/model-en-us/conf/mfcc.conf \
-    android/models/src/main/assets/model-en-us/conf/model.conf \
-    android/models/src/main/assets/model-en-us/graph/Gr.fst \
-    android/models/src/main/assets/model-en-us/graph/HCLr.fst \
-    android/models/src/main/assets/model-en-us/graph/disambig_tid.int \
-    android/models/src/main/assets/model-en-us/graph/phones/word_boundary.int \
-    android/models/src/main/assets/model-en-us/ivector/final.dubm \
-    android/models/src/main/assets/model-en-us/ivector/final.ie \
-    android/models/src/main/assets/model-en-us/ivector/final.mat \
-    android/models/src/main/assets/model-en-us/ivector/global_cmvn.stats \
-    android/models/src/main/assets/model-en-us/ivector/online_cmvn.conf \
-    android/models/src/main/assets/model-en-us/ivector/splice.conf \
-    android/res/layout/main.xml \
+#    android/models/src/main/assets/model-en-in/README \
+#    android/models/src/main/assets/model-en-in/am/final.mdl \
+#    android/models/src/main/assets/model-en-in/am/frame_subsampling_factor \
+#    android/models/src/main/assets/model-en-in/conf/mfcc.conf \
+#    android/models/src/main/assets/model-en-in/conf/model.conf \
+#    android/models/src/main/assets/model-en-in/graph/HCLG.fst \
+#    android/models/src/main/assets/model-en-in/graph/word_boundary.int \
+#    android/models/src/main/assets/model-en-in/graph/words.txt \
+#    android/models/src/main/assets/model-en-in/ivector/final.dubm \
+#    android/models/src/main/assets/model-en-in/ivector/final.ie \
+#    android/models/src/main/assets/model-en-in/ivector/final.mat \
+#    android/models/src/main/assets/model-en-in/ivector/global_cmvn.stats \
+#    android/models/src/main/assets/model-en-in/ivector/ivector.conf \
+#    android/models/src/main/assets/model-en-in/ivector/online_cmvn.conf \
+#    android/models/src/main/assets/model-en-in/ivector/splice.conf \
+#    android/models/src/main/assets/model-en-in/rescore/G.carpa \
+#    android/models/src/main/assets/model-en-in/rescore/G.fst \
+#    android/models/src/main/assets/model-en-us/README \
+#    android/models/src/main/assets/model-en-us/am/final.mdl \
+#    android/models/src/main/assets/model-en-us/conf/mfcc.conf \
+#    android/models/src/main/assets/model-en-us/conf/model.conf \
+#    android/models/src/main/assets/model-en-us/graph/Gr.fst \
+#    android/models/src/main/assets/model-en-us/graph/HCLr.fst \
+#    android/models/src/main/assets/model-en-us/graph/disambig_tid.int \
+#    android/models/src/main/assets/model-en-us/graph/phones/word_boundary.int \
+#    android/models/src/main/assets/model-en-us/ivector/final.dubm \
+#    android/models/src/main/assets/model-en-us/ivector/final.ie \
+#    android/models/src/main/assets/model-en-us/ivector/final.mat \
+#    android/models/src/main/assets/model-en-us/ivector/global_cmvn.stats \
+#    android/models/src/main/assets/model-en-us/ivector/online_cmvn.conf \
+#    android/models/src/main/assets/model-en-us/ivector/splice.conf \
+    android/models/src/main/assets/vosk-model-small-en-in/README \
+    android/models/src/main/assets/vosk-model-small-en-in/am/final.mdl \
+    android/models/src/main/assets/vosk-model-small-en-in/conf/mfcc.conf \
+    android/models/src/main/assets/vosk-model-small-en-in/conf/model.conf \
+    android/models/src/main/assets/vosk-model-small-en-in/graph/Gr.fst \
+    android/models/src/main/assets/vosk-model-small-en-in/graph/HCLr.fst \
+    android/models/src/main/assets/vosk-model-small-en-in/graph/disambig_tid.int \
+    android/models/src/main/assets/vosk-model-small-en-in/graph/phones/word_boundary.int \
+    android/models/src/main/assets/vosk-model-small-en-in/ivector/final.dubm \
+    android/models/src/main/assets/vosk-model-small-en-in/ivector/final.ie \
+    android/models/src/main/assets/vosk-model-small-en-in/ivector/final.mat \
+    android/models/src/main/assets/vosk-model-small-en-in/ivector/global_cmvn.stats \
+    android/models/src/main/assets/vosk-model-small-en-in/ivector/online_cmvn.conf \
+    android/models/src/main/assets/vosk-model-small-en-in/ivector/splice.conf \
     android/res/values/libs.xml \
-    android/res/values/strings.xml \
-    android/src/org/qtproject/example/SpeechRecognitionService.java
+    android/settings.gradle \
+    android/src/org/qtproject/example/SpeechRecognitionService.java \
+    android/src/org/qtproject/example/picofiles/jarvis_android.ppn \
+    android/src/org/qtproject/example/picofiles/ok-we-go_android.ppn \
+    android/src/org/qtproject/example/picofiles/smart_lighting_android.rhn
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

@@ -17,6 +17,8 @@ class MqttClient : public QObject
                                       "hmi.verolt.vego/BMD/changeDriveMode",
                                       "hmi.verolt.vego/BMD/navigationStatus",
                                       "hmi.verolt.vego/BMD/navigation",
+                                      "hmi.verolt.vego/BMD/position",
+                                      "hmi.verolt.vego/BMD/notify",
                                       "hmi.verolt.vego/BMD/endTrip"
                                      };
 

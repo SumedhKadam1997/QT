@@ -5,9 +5,21 @@
 
 SpeechRecognitionService *SpeechRecognitionService::m_instance = nullptr;
 
-static void receivedFromAndroidService(JNIEnv *env, jobject /*thiz*/, jstring value)
+SpeechRecognitionService *SpeechRecognitionService::getInstance() {
+    return m_instance;
+}
+
+static void receiveSpeechString(JNIEnv *env, jobject thiz, jstring value)
 {
-    emit SpeechRecognitionService::instance()->messageFromService(env->GetStringUTFChars(value, nullptr));
+    Q_UNUSED(env)
+    Q_UNUSED(thiz)
+    emit SpeechRecognitionService::getInstance()->speechStringReceived(env->GetStringUTFChars(value, nullptr));
+}
+
+static void receiveWakeWorkDetection(JNIEnv *env, jobject thiz, jboolean isDetected) {
+    Q_UNUSED(env)
+    Q_UNUSED(thiz)
+    emit SpeechRecognitionService::getInstance()->isWakeWordDetected(static_cast<bool>((isDetected == JNI_TRUE)));
 }
 
 SpeechRecognitionService::SpeechRecognitionService(QObject *parent)
@@ -15,7 +27,8 @@ SpeechRecognitionService::SpeechRecognitionService(QObject *parent)
 {
     m_instance = this;
 
-    JNINativeMethod methods[] {{"sendToQt", "(Ljava/lang/String;)V", reinterpret_cast<void *>(receivedFromAndroidService)}};
+    JNINativeMethod methods[] {{"sendSpeechStringToQT", "(Ljava/lang/String;)V", reinterpret_cast<void *>(receiveSpeechString)},
+                               {"sendWakeWordDetection", "(Z)V", reinterpret_cast<void *>(receiveWakeWorkDetection)}};
     QAndroidJniObject javaClass("org/qtproject/example/SpeechRecognitionService");
 
     QAndroidJniEnvironment env;
@@ -24,19 +37,33 @@ SpeechRecognitionService::SpeechRecognitionService(QObject *parent)
                          methods,
                          sizeof(methods) / sizeof(methods[0]));
     env->DeleteLocalRef(objectClass);
-    QObject::connect(SpeechRecognitionService::instance(), &SpeechRecognitionService::messageFromService, [](const QString &message) {
+    QObject::connect(SpeechRecognitionService::getInstance(), &SpeechRecognitionService::speechStringReceived, [](const QString &message) {
         qDebug() << "Message from Android Service : " << message;
-        SpeechRecognitionService::instance()->setSpeechString(message);
+        SpeechRecognitionService::getInstance()->setSpeechString(message);
+    });
+    QObject::connect(SpeechRecognitionService::getInstance(), &SpeechRecognitionService::isWakeWordDetected, [](bool isDetected) {
+        qDebug() << "Message from Android Service : " << isDetected;
+        SpeechRecognitionService::getInstance()->setWakeWordDetected(isDetected);
     });
 }
 
-void SpeechRecognitionService::sendToService(const QString &name)
+void SpeechRecognitionService::startSpeechService(const QString &name)
 {
     QAndroidIntent serviceIntent(QtAndroid::androidActivity().object(),
                                         "org/qtproject/example/SpeechRecognitionService");
     serviceIntent.putExtra("name", name.toUtf8());
     QAndroidJniObject result = QtAndroid::androidActivity().callObjectMethod(
                 "startService",
+                "(Landroid/content/Intent;)Landroid/content/ComponentName;",
+                serviceIntent.handle().object());
+}
+
+void SpeechRecognitionService::stopSpeechService()
+{
+    QAndroidIntent serviceIntent(QtAndroid::androidActivity().object(),
+                                        "org/qtproject/example/SpeechRecognitionService");
+    QAndroidJniObject result = QtAndroid::androidActivity().callObjectMethod(
+                "stopService",
                 "(Landroid/content/Intent;)Landroid/content/ComponentName;",
                 serviceIntent.handle().object());
 }
@@ -52,4 +79,18 @@ void SpeechRecognitionService::setSpeechString(const QString &newSpeechString)
         return;
     m_speechString = newSpeechString;
     emit speechStringChanged();
+}
+
+const bool
+&SpeechRecognitionService::wakeWordDetected() const
+{
+    return m_wakeWordDetected;
+}
+
+void SpeechRecognitionService::setWakeWordDetected(bool newWakeWordDetected)
+{
+    if (m_wakeWordDetected == newWakeWordDetected)
+        return;
+    m_wakeWordDetected = newWakeWordDetected;
+    emit wakeWordDetectedChanged();
 }
