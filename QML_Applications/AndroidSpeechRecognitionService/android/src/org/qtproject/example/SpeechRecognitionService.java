@@ -34,7 +34,7 @@ public class SpeechRecognitionService extends Service implements RecognitionList
     private static final String TAG = "DebugTag";
     private static final String VOSKTAG = "VOSKTAG";
     private static final String PICOTAG = "PICOTAG";
-    private static final String ACCESS_KEY = "";
+    private static final String ACCESS_KEY = "==";
 
     private Model model;
     private SpeechService speechService;

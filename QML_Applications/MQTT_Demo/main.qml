@@ -94,7 +94,8 @@ Window {
         onClicked: {
             mqtt.publishMessage("hmi.verolt.vego/BMD/position", "18.656075119075645,74.97819236379377,20,30")
         }
-    }    Button {
+    }
+    Button {
         id: btnPos3
         text: "Pos 3"
         anchors.left: btnPos2.right
@@ -135,6 +136,27 @@ Window {
         text: "Send Message"
         onClicked: {
             mqtt.publishMessage("hmi.verolt.vego/BMD/notify", txtInput.text)
+        }
+    }
+    Button {
+        id: btnDiag1
+        anchors.horizontalCenter: txtInput.horizontalCenter
+        anchors.top: btnTextMessage.bottom
+//        anchors.topMargin: 20
+        text: "Diag 1"
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/diagnosis", "0,1,0,1,1,1,0,1,1,RUN")
+        }
+    }
+
+    Button {
+        id: btnDiag2
+        anchors.horizontalCenter: txtInput.horizontalCenter
+        anchors.top: btnDiag1.bottom
+//        anchors.topMargin: 20
+        text: "Diag 2"
+        onClicked: {
+            mqtt.publishMessage("hmi.verolt.vego/BMD/diagnosis", "1,0,1,0,1,1,0,1,0,TOW")
         }
     }
 }
