@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>assets/triangleDown.png</file>
+        <file>assets/triangleUp.png</file>
+    </qresource>
+</RCC>
