@@ -16,7 +16,7 @@ qt_add_executable(appGraphChangeColourforLineSeries
 qt_add_qml_module(appGraphChangeColourforLineSeries
     URI GraphChangeColourforLineSeries
     VERSION 1.0
-    QML_FILES main.qml 
+    QML_FILES main.qml Bolts.qml
 )
 
 set_target_properties(appGraphChangeColourforLineSeries PROPERTIES
